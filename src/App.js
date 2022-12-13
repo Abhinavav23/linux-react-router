@@ -6,7 +6,7 @@ import { Login } from './components/Pages/Login';
 import { MyOrders } from './components/Pages/MyOrders';
 import { PageNotFound } from './components/Pages/PageNotFound';
 import { Profile } from './components/Pages/Profile';
-
+import { User } from './components/Pages/User'
 function App() {
   return (
     <div className="App">
@@ -16,8 +16,9 @@ function App() {
       <Profile/>
       <Login/> */}
       <Routes>
+        <Route path='/' element={<h3>Welcome to my App</h3>}/>
         <Route path='/homepage' element={<Home/>}/>
-        <Route path='/profile' element={<Profile/>}>
+        <Route path='profile/*' element={<Profile/>}>
           <Route path='myorders' element={<MyOrders/>}/>
           <Route path='mywishlist' element={<div>My wishlist page</div>}/>
           <Route path='myaddress' element={<div>My address page</div>}/>
@@ -25,6 +26,8 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         {/* <Route path='*' element={<div>Page not found</div>}/> */}
         <Route path='*' element={<PageNotFound/>}/>
+        {/* to add the id's value dynamically in the URL */}
+        <Route path='/user/:userId' element={<User/>}/>
       </Routes>
     </div>
   );
