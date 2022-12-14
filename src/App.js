@@ -5,7 +5,9 @@ import { Home } from './components/Pages/Home';
 import { Login } from './components/Pages/Login';
 import { MyOrders } from './components/Pages/MyOrders';
 import { PageNotFound } from './components/Pages/PageNotFound';
+import { Product } from './components/Pages/Product';
 import { Profile } from './components/Pages/Profile';
+import { Signup } from './components/Pages/Signup';
 import { User } from './components/Pages/User'
 function App() {
   return (
@@ -24,13 +26,20 @@ function App() {
           <Route path='myaddress' element={<div>My address page</div>}/>
         </Route>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+
         {/* <Route path='*' element={<div>Page not found</div>}/> */}
         <Route path='*' element={<PageNotFound/>}/>
         {/* to add the id's value dynamically in the URL */}
-        <Route path='/user/:userId' element={<User/>}/>
+        <Route path='/user/:userId/:userType' element={<User/>}/>
+        <Route path='/product' element={<Product/>}/>
       </Routes>
+      <br/>
+      <footer>this is footer</footer>
     </div>
   );
 }
 
 export default App;
+
+// 'a' === 'aaa'

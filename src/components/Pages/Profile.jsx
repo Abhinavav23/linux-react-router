@@ -11,7 +11,6 @@ export const Profile = () => {
             <Route path='myaddress' element={<div>My address page</div>}/>
         </Routes> */}
 
-
         <br/>
 
         <div> this is my Profile page</div>

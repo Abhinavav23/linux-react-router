@@ -5,20 +5,42 @@ export const User = () => {
     // reading the dynamic parameter value from URL
     const userParams = useParams();
     console.log(userParams);
-    const userData = [
+    const studentData = [
         {
             id: '101',
             username: 'Abhinav',
-            role: 'Ins'
+            type: 'stu'
+        },
+        {
+            id: '101',
+            username: 'Abhinav',
+            type: 'ins'
         },
         {
             id: '102',
             username: 'Shivam',
-            role: 'stu'
+        },
+    ]
+
+    const instructorData = [
+        {
+            id: '101',
+            username: 'Abhinav',
+        },
+        {
+            id: '102',
+            username: 'Shivam',
         },
     ]
     let user;
-   user = userData.find((user) => user.id === userParams.userId);
+    if(userParams.userType === 'stu'){
+        user = studentData.find((user) => user.id === userParams.userId);
+        if(user) user.role = 'Student'
+    } else{
+        user = instructorData.find((user) => user.id === userParams.userId);
+        if(user) user.role = 'Instructor'
+    }
+   
     // console.log(user);
     if(!user) {
         user = {
