@@ -1,8 +1,23 @@
-import React from 'react'
-import { Link, Outlet, Route, Routes } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { Link, Outlet, Route, Routes, useNavigate } from 'react-router-dom'
+import { UserContext } from '../Context/AuthContext'
 import { MyOrders } from './MyOrders'
 
 export const Profile = () => {
+  const {loggedInUser, setLoggedInUser} = useContext(UserContext)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!loggedInUser.email){
+      navigate('/login')
+    }
+  }, [])
+
+  const logout = () => {
+    setLoggedInUser({})
+    navigate('/login')
+  }
+  
   return (
     <>  
         {/* <Routes>
@@ -13,7 +28,12 @@ export const Profile = () => {
 
         <br/>
 
-        <div> this is my Profile page</div>
+        <h3> This is my Profile page</h3>
+        <section>
+          <div>Name: {loggedInUser.name}</div>
+          <div>Email: {loggedInUser.email}</div>
+          <div>Mobile: {loggedInUser.mobile}</div>
+        </section>
 
        <br/>
 
@@ -24,12 +44,8 @@ export const Profile = () => {
         <Link to='myaddress'>my address</Link>
         <br/>
         <Link to='mywishlist'>my wishlist</Link>
-        
-
-
-       
-        
-        
+        <br/>
+        <button onClick={logout}>Logout</button>
     </>
   )
 }

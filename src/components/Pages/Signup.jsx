@@ -7,18 +7,18 @@ export const Signup = () => {
     const passwordRef =  useRef();
     const addressRef =  useRef();
     const mobileRef =  useRef();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const saveUser = (user) => {
         const userData = JSON.parse(localStorage.getItem('userData'));
-        console.log('userData', userData);
-        if(!userData){
+        console.log('userData', userData.length);
+        if(userData){
+            userData.push(user)
+            localStorage.setItem('userData', JSON.stringify(userData))
+        }else{
             let userList = []
             userList.push(user)
             localStorage.setItem('userData', JSON.stringify(userList))
-        }else{
-            userData.push(user)
-            localStorage.setItem('userData', JSON.stringify(userData))
         }
     }
     const onSubmit = (e) => {
